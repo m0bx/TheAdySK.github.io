@@ -1,16 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Website</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <title>mobx</title>
+    <meta http-equiv="refresh" content="69696969">
+    <link rel="icon" type="image/x-icon" href="./resources/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="./resources/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto Mono">
+
+    <style type="text/css">
+      
+
+    </style>
   </head>
-  <body>
+  <body style="background-color: #00FFAA;color:#333333">
     <main>
-        <h1>Welcome to My Website</h1>  
+        <h1 id="top"></h1>
+        <button onclick="reset()">Click</button>
+        <script>
+            var i = 0;
+            let text = "my name mobx. Don't expect much";
+            let speed = 50;
+
+            function reset() {
+              document.getElementById("top").innerHTML = "";
+              i = 0;
+              writer();
+            };
+            function writer() {
+              let textchar = text.charAt(i++);
+              let paragraph = document.getElementById('top');
+              let charElement = document.createTextNode(textchar);
+              paragraph.appendChild(charElement);
+              if(i < text.length+1) {
+                if(text.charAt(i-1) === ".") {setTimeout('writer()', speed+350);}
+                
+                else{setTimeout('writer()', speed);
+                }
+              }  
+              else {
+                    return;
+              }
+            };
+
+            document.addEventListener("DOMContentLoaded", function() {writer();});
+        </script>
     </main>
 	<script src="index.js"></script>
   </body>
