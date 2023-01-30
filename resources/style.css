@@ -5,13 +5,9 @@
     src: local('Eurostile MN'), url('https://fonts.cdnfonts.com/s/70817/Eurostile MN Extended Bold.woff') format('woff');
 }
 /* fonts: Eurostile MN, Roboto Mono */
-#aaa{
-  background-color: #111111;
-  color: #881166;
-}
 #top{
   color: #115555;
-  font-family: 'Eurostile MN';
+  font-family: 'Roboto Mono';
   text-align: left;
   vertical-align: text-bottom;
 }
