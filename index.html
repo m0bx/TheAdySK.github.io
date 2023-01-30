@@ -5,7 +5,10 @@
     <meta http-equiv="refresh" content="69696969">
     <link rel="icon" type="image/x-icon" href="./resources/favicon.ico?">
     <link rel="stylesheet" type="text/css" href="./resources/style.css">
+    <! -- Google Fonts -- >
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto Mono">
+    <! -- FontAwesome -- >
+    <script src="https://kit.fontawesome.com/b2b2f7e7a9.js" crossorigin="anonymous"></script>
 
     <style type="text/css">
       
@@ -13,11 +16,13 @@
     </style>
   </head>
   <body style="background-color: #00FFAA;color:#333333">
+    <i id="bars" class="fa-solid fa-bars"></i>
     <main>
         <h1 id="top"></h1>
         <button onclick="reset()">Click</button>
         <script>
             var i = 0;
+            let br = document.createElement("br");
             let text = "my name mobx. Don't expect much";
             let speed = 50;
 
@@ -32,7 +37,7 @@
               let charElement = document.createTextNode(textchar);
               paragraph.appendChild(charElement);
               if(i < text.length+1) {
-                if(text.charAt(i-1) === ".") {setTimeout('writer()', speed+350);}
+                if(text.charAt(i-1) === ".") {paragraph.appendChild(br);; setTimeout('writer()', speed+350);}
                 
                 else{setTimeout('writer()', speed);
                 }
