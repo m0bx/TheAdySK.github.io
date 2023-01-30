@@ -1,0 +1,34 @@
+@font-face {
+    font-family: 'Eurostile MN';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Eurostile MN'), url('https://fonts.cdnfonts.com/s/70817/Eurostile MN Extended Bold.woff') format('woff');
+}
+/* fonts: Eurostile MN, Roboto Mono */
+#aaa{
+  background-color: #111111;
+  color: #881166;
+}
+#top{
+  color: #115555;
+  font-family: 'Eurostile MN';
+  text-align: left;
+  vertical-align: text-bottom;
+}
+@keyframes blink{
+  0% {opacity: 0}
+  49%{opacity: 0}
+  50% {opacity: 1}
+}
+
+#top::after{
+  content: "_";
+  width: 50%;
+  animation: blink .5s infinite;
+  animation-timing-function: step-end;
+}
+
+#top2 {
+  color: #FF0000;
+  font-family: 'Roboto Mono';
+}
