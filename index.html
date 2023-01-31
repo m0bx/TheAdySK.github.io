@@ -15,11 +15,15 @@
 
     </style>
   </head>
-  <body style="background-color: #00FFAA;color:#333333">
-    <i id="bars" class="fa-solid fa-bars"></i>
+  <body style="background-color: #d3d3d3;color:#333333">
     <main>
+      <div class="menubox"></div>
+      <div class="menubarz">
+        <i class="fa-solid fa-bars fa-4x" aria-hidden="true"></i>
+      </div>
         <h1 id="top"></h1>
-        <button onclick="reset()">Click</button>
+      
+        <button class="mainbutton" onclick="reset()">Reset state</button>
         <script>
             var i = 0;
             let br = document.createElement("br");
@@ -46,7 +50,6 @@
                     return;
               }
             };
-
             document.addEventListener("DOMContentLoaded", function() {writer();});
         </script>
     </main>
