@@ -2,5 +2,3 @@
 
 mobx.me page source code
 [check the webpage](https://mobx.me).
-
-dadadad
