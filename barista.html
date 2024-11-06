@@ -13,43 +13,65 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #f8f0e3; /* Very light brown */
+            background-color: #f8f0e3;
             padding: 20px;
+        }
+        .back-arrow {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.8em;
+            color: #d8ac5c;
+            padding: 5px 10px;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: color 0.2s ease, background-color 0.2s ease;
+        }
+        .back-arrow:hover {
+            background-color: #d8ac5c;
+            color: white;
         }
         h1 {
             font-size: 2.5em;
             margin-bottom: 20px;
         }
-        select, input, button {
+        select, input {
             width: 100%;
             max-width: 600px;
             padding: 15px;
             font-size: 1.5em;
             margin-bottom: 20px;
             border-radius: 5px;
-            border: 2px solid #007BFF;
+            border: 2px solid #c4a484; /* Brown border */
         }
         button {
-            background-color: #d8ac5c; /* Default button color */
+            width: 100%;
+            max-width: 600px;
+            padding: 15px;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            background-color: #d8ac5c;
             color: white;
             border: none;
             cursor: pointer;
-            transition: background-color 0.2s ease; /* Smooth transition for background color */
+            transition: background-color 0.2s ease;
         }
         button:hover {
-            background-color: #b99a4b; /* Darker color on hover */
+            background-color: #b99a4b;
         }
         .item-list {
             width: 100%;
             max-width: 600px;
             background-color: #ffffff;
-            border: 2px solid #007BFF;
-            border-radius: 5px;
+            border: 2px solid #c4a484; /* Brown border */
+            border-radius: 3px;
             padding: 10px;
-            max-height: 200px; /* Limit height for scrolling */
-            overflow-y: auto; /* Allow scrolling */
-            position: relative;
-            margin-bottom: 20px; /* Add space below item list */
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            display: none; /* Hidden initially */
         }
         .item {
             display: flex;
@@ -59,34 +81,37 @@
             border-bottom: 1px solid #ddd;
         }
         .remove-button {
-            background-color: transparent; /* Set background to transparent */
-            color: #d8ac5c; /* Default color of "X" to match circle */
+            background-color: transparent;
+            color: #d8ac5c;
             border: none;
-            border-radius: 50%; /* Keep it circular */
-            width: 50px; /* Increase the size for accessibility */
-            height: 50px; /* Increase the size for accessibility */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
             cursor: pointer;
-            transition: background-color 0.3s ease; /* Transition for smooth color change */
-            display: flex; /* Use flexbox for centering */
-            align-items: center; /* Center align vertically */
-            justify-content: center; /* Center align horizontally */
-            font-size: 1.5em; /* Increase font size of "X" */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
         }
         .remove-button:hover {
-            background-color: #d8ac5c; /* Change to desired hover color */
-            color: white; /* Change text color to white on hover */
-        }
-        .copy-button {
-            background-color: #d8ac5c; /* Default button color */
+            background-color: #d8ac5c;
             color: white;
-        }
-        .copy-button.copied {
-            background-color: #b99a4b; /* Darker color when copied */
         }
     </style>
 </head>
 <body>
+    <a href="index.html" class="back-arrow">←</a>
     <h1>Barista</h1>
+
+    <!-- Dropdown for Coffee Stand Selection -->
+    <select id="standDropdown">
+        <option value="">Vyber KT</option>
+        <option value="KT Moravák">KT Moravák</option>
+        <option value="KT Janáček">KT Janáček</option>
+        <option value="KT Česká">KT Česká</option>
+    </select>
+
+    <!-- Dropdown and Input for Item Selection -->
     <select id="itemDropdown">
         <option value="">Vyberte položku</option>
         <option value="item1">S kelímky</option>
@@ -96,13 +121,13 @@
     </select>
     <input type="number" id="itemQuantity" placeholder="Zadajte množstvo" min="1" />
     <button id="addButton">Pridaj</button>
+    
+    <!-- Item List and Send Button (hidden initially) -->
     <div id="itemList" class="item-list"></div>
-    <div id="copyContainer" style="display: none;">
-        <button id="copyButton" class="copy-button">Kofírovať</button>
-    </div>
+    <button id="sendButton" style="display: none;">Zaslať</button>
 
     <script>
-        const itemCounts = {}; // Object to track item counts
+        const itemCounts = {};
 
         document.getElementById('addButton').onclick = function() {
             const dropdown = document.getElementById('itemDropdown');
@@ -110,14 +135,17 @@
             const itemName = dropdown.options[dropdown.selectedIndex].text;
 
             if (dropdown.value && quantity) {
-                // Update the item count
                 if (itemCounts[itemName]) {
-                    itemCounts[itemName] += quantity; // Sum quantities
+                    itemCounts[itemName] += quantity;
                 } else {
-                    itemCounts[itemName] = quantity; // Initialize count
+                    itemCounts[itemName] = quantity;
                 }
-                updateItemList(); // Refresh the displayed list
-                document.getElementById('itemQuantity').value = ""; // Reset quantity input
+                updateItemList();
+                document.getElementById('itemQuantity').value = "";
+
+                // Show item list and send button after first item is added
+                document.getElementById('itemList').style.display = 'block';
+                document.getElementById('sendButton').style.display = 'block';
             } else {
                 alert("Prosím vyberte položku a zadajte množstvo.");
             }
@@ -125,52 +153,57 @@
 
         function updateItemList() {
             const itemList = document.getElementById('itemList');
-            itemList.innerHTML = ""; // Clear current list
-            let hasItems = false; // Flag to track if there are items
-
+            itemList.innerHTML = "";
             for (const item in itemCounts) {
-                hasItems = true; // There are items present
-                // Create item element
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'item';
                 itemDiv.innerHTML = `${item} (x${itemCounts[item]})`;
 
-                // Create remove button
                 const removeButton = document.createElement('button');
                 removeButton.className = 'remove-button';
                 removeButton.innerHTML = 'X';
                 removeButton.onclick = function() {
-                    delete itemCounts[item]; // Remove item from counts
-                    updateItemList(); // Refresh the displayed list
+                    delete itemCounts[item];
+                    updateItemList();
                 };
 
-                // Append remove button to item div
                 itemDiv.appendChild(removeButton);
-                itemList.appendChild(itemDiv); // Append item div to item list
+                itemList.appendChild(itemDiv);
             }
-
-            // Show or hide the copy button based on item presence
-            document.getElementById('copyContainer').style.display = hasItems ? 'block' : 'none';
         }
 
-        document.getElementById('copyButton').onclick = function() {
-            const itemList = document.getElementById('itemList');
-            let textToCopy = "";
+        document.getElementById('sendButton').onclick = function() {
+            const standDropdown = document.getElementById('standDropdown');
+            const selectedStand = standDropdown.options[standDropdown.selectedIndex].value;
 
-            // Prepare text to copy from the item list
-            for (const item in itemCounts) {
-                textToCopy += `${item} (x${itemCounts[item]})\n`;
+            if (!selectedStand) {
+                alert("Prosím vyberte KT.");
+                return;
             }
 
-            // Copy to clipboard
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                const copyButton = document.getElementById('copyButton');
-                copyButton.innerHTML = 'Skopírované!'; // Change button text
-                copyButton.classList.add('copied'); // Change button style
-                setTimeout(() => {
-                    copyButton.innerHTML = 'Kofírovať'; // Reset button text
-                    copyButton.classList.remove('copied'); // Reset button style
-                }, 500); // Reset after 500 ms
+            const items = Object.entries(itemCounts).map(([item, count]) => `${item} (x${count})`).join('\n');
+            const webhookUrl = "https://discord.com/api/webhooks/1303752787737444423/0TSLzUYZlepHdg1oMl8h1_DJdFz3NqMcSq4uWfugkZgS3FJ0DZ46k6r4Kg-KZQ1qUhVr";
+
+            fetch(webhookUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username: selectedStand,
+                    content: items
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('sendButton').innerHTML = 'Zaslané';
+                    document.getElementById('sendButton').disabled = true;
+                } else {
+                    alert("Chyba pri odosielaní.");
+                }
+            })
+            .catch(error => {
+                alert("Chyba pripojenia: " + error.message);
             });
         };
     </script>

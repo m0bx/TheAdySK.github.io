@@ -13,7 +13,7 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #e0f7fa;
+            background-color: #f8f0e3; /* Matches barista.html background color */
             padding: 20px;
         }
         h1 {
@@ -27,23 +27,29 @@
             font-size: 1.2em;
             margin-bottom: 30px;
             padding: 10px;
-            border: 2px solid #007BFF;
+            border: 2px solid #d8ac5c; /* Matches barista button color */
             border-radius: 5px;
-            resize: none; /* Prevent resizing */
-            color: #555; /* Text color for user input */
+            resize: none;
+            color: #555;
         }
-        .button {
-            padding: 15px 30px;
-            font-size: 1.2em;
-            color: white;
-            background-color: #007BFF;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .button:hover {
-            background-color: #0056b3;
-        }
+        .back-arrow {
+			position: absolute;
+			top: 20px;
+			left: 20px;
+			font-size: 1.8em; /* Slightly larger size */
+			color: #d8ac5c; /* Matches "Kofírovať" button color */
+			padding: 5px 10px; /* Add a little padding for a modern look */
+			text-decoration: none;
+			cursor: pointer;
+			border-radius: 4px; /* Rounded edges */
+			transition: color 0.2s ease, background-color 0.2s ease; /* Smooth transition */
+		}
+
+		.back-arrow:hover {
+			background-color: #d8ac5c; /* Adds background on hover */
+			color: white; /* Changes arrow color on hover */
+		}
+
         .plain-text {
             width: 100%;
             max-width: 600px;
@@ -51,16 +57,17 @@
             font-size: 1.2em;
             margin-top: 20px;
             padding: 10px;
-            border: 2px solid #007BFF;
+            border: 2px solid #d8ac5c; /* Matches barista button color */
             border-radius: 5px;
             background-color: #ffffff;
         }
     </style>
 </head>
 <body>
+    <a href="index.html" class="back-arrow">←</a> <!-- Back arrow -->
     <h1>Vlož text od baristov</h1>
     <textarea class="text-entry" placeholder="Rozdeľuj správy enterom a maž všetko okrem vecí zo závozu"></textarea>
-    <button class="button"></button>
+    <button class="button">Odoslať</button>
     <div class="plain-text"></div>
 </body>
 </html>
