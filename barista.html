@@ -6,16 +6,16 @@
     <title>Barista</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start; /* Align to the top instead of center */
-            height: 100vh;
-            margin: 0;
-            background-color: #f8f0e3;
-            padding: 20px;
-        }
+			font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: flex-start; 
+			height: 100vh;
+			margin: 0;
+			background-color: #f8f0e3;
+			padding: 20px;
+		}
         select:focus {
             outline: none;
         }
@@ -37,9 +37,9 @@
             color: white;
         }
         h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px; /* Reduced margin */
-        }
+			font-size: 2.5em;
+			margin-bottom: 10px;
+}
         select, input {
             width: 100%;
             max-width: 600px;
@@ -47,7 +47,8 @@
             font-size: 1.5em;
             margin-bottom: 20px;
             border-radius: 5px;
-            border: 2px solid #c4a484; /* Brown border */
+            border: 2px solid #c4a484;
+			font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
         }
         button {
             width: 100%;
@@ -61,11 +62,11 @@
             border: none;
             cursor: pointer;
             transition: background-color 0.2s ease;
+			font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
         }
         button:hover {
             background-color: #b99a4b;
         }
-        /* Ensure the layout stays consistent even when itemList is hidden */
         .item-list {
             width: 100%;
             max-width: 600px;
@@ -76,18 +77,21 @@
             max-height: 200px;
             overflow-y: auto;
             margin-bottom: 20px;
-            display: none; /* Keep it hidden initially */
-            min-height: 200px; /* Reserve space for the item list */
+            display: none;
+            min-height: 200px; 
+			font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
         }
+		@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
         input {
             width: 100%;
-            max-width: 600px; /* Match the width of the dropdowns */
-            padding: 15px;    /* Match the padding of the dropdowns */
+            max-width: 600px; 
+            padding: 15px;    
             font-size: 1.5em;
             margin-bottom: 20px;
             border-radius: 5px;
-            border: 2px solid #c4a484; /* Brown border */
-            box-sizing: border-box; /* Ensures padding and borders are included in the width */
+            border: 2px solid #c4a484; 
+            box-sizing: border-box; 
+			font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
         }
         .item {
             display: flex;
@@ -95,6 +99,7 @@
             align-items: center;
             padding: 5px;
             border-bottom: 1px solid #ddd;
+			font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
         }
         .remove-button {
             background-color: transparent;
@@ -108,18 +113,18 @@
             align-items: center;
             justify-content: center;
             font-size: 1.5em;
+			font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
         }
         .remove-button:hover {
             background-color: #d8ac5c;
             color: white;
         }
-        /* Ensure the page layout looks good on mobile */
         @media (max-width: 768px) {
             body {
-                padding: 10px; /* Adjust body padding on smaller screens */
+                padding: 10px;
             }
             .item-list {
-                min-height: 150px; /* Adjust the reserved space for smaller screens */
+                min-height: 150px;
             }
         }
     </style>
@@ -145,21 +150,47 @@
 
 
     <!-- Dropdown and Input for Item Selection -->
-    <select id="itemDropdown">
-        <option value="">Vyberte položku</option>
-        <option value="item1">S kelímky</option>
-        <option value="item2">M kelímky</option>
-        <option value="item3">L kelímky</option>
-        <option value="item4">XL kelímky</option>
-    </select>
+	<select id="itemDropdown">
+		<option value="item1">Voda</option>
+		<option value="item2">Odpad</option>
+		<option value="item3">Hadry</option>
+		<option value="item4">Ručníky</option>
+		<option value="item5">Dóza kávy</option>
+		<option value="item6">Kartón mlieka</option>
+		<option value="item7">Oves</option>
+		<option value="item8">Sója</option>
+		<option value="item9">S kelímky</option>
+		<option value="item10">M kelímky</option>
+		<option value="item11">L kelímky</option>
+		<option value="item12">XL kelímky</option>
+		<option value="item13">Viečka S</option>
+		<option value="item14">Viečka M</option>
+		<option value="item15">Viečka L</option>
+		<option value="item16">Držiak na 4 kelímky</option>
+		<option value="item17">Perníčkoví panáčikovia</option>
+		<option value="item18">Papierová role</option>
+		<option value="item19">Chai korenie</option>
+		<option value="item20">Drtený perníček</option>
+		<option value="item21">Mliečna čokoláda</option>
+		<option value="item22">Biela čokoláda</option>
+		<option value="item23">Sirup</option>
+		<option value="item24">Bezkofeín</option>
+		<option value="item25">Váha</option>
+		<option value="item26">Stopky</option>
+		<option value="item27">Kilovka kávy</option>
+		<option value="item28">200g Kávy</option>
+		<option value="item29">Biely cukor</option>
+		<option value="item30">Hnedý cukor</option>
+	</select>
+
     <input type="number" id="itemQuantity" placeholder="Zadajte množstvo" min="1" />
     <button id="addButton">Pridaj</button>
     
     <!-- Item List and Send Button (hidden initially) -->
     <div id="itemList" class="item-list"></div>
-    <button id="sendButton" style="display: none;">Zaslať</button>
+    <button id="sendButton" style="display: none;">Odoslať</button>
 	<script>
-    let itemCounts = {};  // Use 'let' to allow reassignment
+    let itemCounts = {};
 
     document.getElementById('addButton').onclick = function() {
         const dropdown = document.getElementById('itemDropdown');
@@ -205,7 +236,7 @@
     }
 
     document.getElementById('sendButton').onclick = function() {
-		const selectedStand = document.getElementById('standDropdown').value; // Capture the selected KT
+		const selectedStand = document.getElementById('standDropdown').value;
 
 		if (!selectedStand) {
 			alert("Prosím vyberte KT.");
@@ -217,10 +248,10 @@
 		const webhookUrl = "https://discord.com/api/webhooks/1303752787737444423/0TSLzUYZlepHdg1oMl8h1_DJdFz3NqMcSq4uWfugkZgS3FJ0DZ46k6r4Kg-KZQ1qUhVr";
 
 		const payload = {
-			content: `${selectedStand}`, // Send the dynamically selected KT
+			content: `${selectedStand}`,
 			embeds: [
 				{
-					title: items,  // Add the items in the title of the embed
+					title: items,
 					color: 14199900
 				}
 			],
@@ -239,7 +270,7 @@
 				document.getElementById('sendButton').innerHTML = 'Zaslané';
 				document.getElementById('sendButton').disabled = true;
 
-				itemCounts = {};  // Reset the itemCounts object
+				itemCounts = {};
 				updateItemList();
 
 				document.getElementById('standDropdown').value = '';
@@ -253,17 +284,13 @@
 			alert("Chyba pripojenia: " + error.message);
 		});
 	};
-
-    // Function to re-enable the "Zaslať" button
     function enableSendButton() {
         document.getElementById('sendButton').disabled = false;
         document.getElementById('sendButton').innerHTML = 'Zaslať';
     }
-
-    // Reset button once new item is added after a send
     document.getElementById('addButton').addEventListener('click', function() {
         if (document.getElementById('sendButton').disabled) {
-            enableSendButton();  // Re-enable the send button when a new item is added
+            enableSendButton();
         }
     });
 </script>
