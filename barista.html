@@ -16,6 +16,10 @@
             background-color: #f8f0e3;
             padding: 20px;
         }
+		select:focus {
+			outline: none;
+		}
+
         .back-arrow {
             position: absolute;
             top: 20px;
@@ -171,6 +175,14 @@
                 itemList.appendChild(itemDiv);
             }
         }
+		// Add an event listener to remove focus when clicking away
+		document.getElementById('itemDropdown').addEventListener('blur', function() {
+			this.blur();
+		});
+
+		document.getElementById('standDropdown').addEventListener('blur', function() {
+			this.blur();
+		});
 
         document.getElementById('sendButton').onclick = function() {
             const standDropdown = document.getElementById('standDropdown');
