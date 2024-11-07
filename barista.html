@@ -4,178 +4,152 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barista</title>
-    <style>
+	<style>
+    body {
+        font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+        margin-bottom: 50px;
+        background-color: #f8f0e3;
+        padding: 20px;
+        padding-bottom: 40px;
+    }
+
+    select:focus {
+        outline: none;
+    }
+
+    .back-arrow {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 1.8em;
+        color: #d8ac5c;
+        padding: 5px 10px;
+        text-decoration: none;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .back-arrow:hover {
+        background-color: #d8ac5c;
+        color: white;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+    }
+
+    select, input {
+        width: 100%;
+        max-width: 600px;
+        padding: 15px;
+        font-size: 1.2em;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: 2px solid #c4a484;
+        font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    input::placeholder {
+        font-size: 1.2em;
+    }
+
+    button {
+        width: 100%;
+        max-width: 600px;
+        padding: 10px;
+        font-size: 1.5em;
+        margin-bottom: 15px; 
+        border-radius: 4px;
+        background-color: #d8ac5c;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    button:hover {
+        background-color: #b99a4b;
+    }
+
+    .item-list {
+        width: 100%;
+        max-width: 600px;
+        background-color: #ffffff;
+        border: 2px solid #c4a484;
+        border-radius: 3px;
+        padding: 10px;
+        max-height: 200px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        display: none;
+        min-height: 200px;
+        font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .item-list::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .item-list::-webkit-scrollbar-thumb {
+        background-color: #c4a484;
+        border-radius: 4px;
+    }
+
+    .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px;
+        border-bottom: 1px solid #ddd;
+        font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .remove-button {
+        background-color: transparent;
+        color: #d8ac5c;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5em;
+        font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .remove-button:hover {
+        background-color: #d8ac5c;
+        color: white;
+    }
+
+    #itemSelection {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1px;
+    }
+
+    @media (max-width: 768px) {
         body {
-			font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: flex-start; 
-			height: 100vh;
-			margin: 0;
-			background-color: #f8f0e3;
-			padding: 20px;
-		}
-        select:focus {
-            outline: none;
+            padding: 10px;
         }
 
-        .back-arrow {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 1.8em;
-            color: #d8ac5c;
-            padding: 5px 10px;
-            text-decoration: none;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: color 0.2s ease, background-color 0.2s ease;
-        }
-        .back-arrow:hover {
-            background-color: #d8ac5c;
-            color: white;
-        }
-        h1 {
-			font-size: 2.5em;
-			margin-bottom: 10px;
-}
-        select, input {
-            width: 100%;
-            max-width: 600px;
-            padding: 15px;
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            border: 2px solid #c4a484;
-			font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        button {
-            width: 100%;
-            max-width: 600px;
-            padding: 10px;
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            background-color: #d8ac5c;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-			font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        button:hover {
-            background-color: #b99a4b;
-        }
         .item-list {
-            width: 100%;
-            max-width: 600px;
-            background-color: #ffffff;
-            border: 2px solid #c4a484;
-            border-radius: 3px;
-            padding: 10px;
-            max-height: 200px;
-            overflow-y: auto;
-            margin-bottom: 20px;
-            display: none;
-            min-height: 200px; 
-			font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 150px;
         }
-        input {
-            width: 100%;
-            max-width: 600px; 
-            padding: 15px;    
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            border: 2px solid #c4a484; 
-            box-sizing: border-box; 
-			font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px;
-            border-bottom: 1px solid #ddd;
-			font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .remove-button {
-            background-color: transparent;
-            color: #d8ac5c;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5em;
-			font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .remove-button:hover {
-            background-color: #d8ac5c;
-            color: white;
-        }
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            .item-list {
-                min-height: 150px;
-            }
-        }
-		        .item-checkbox {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            cursor: pointer;
-            font-size: 1.2em;
-        }
-		#itemSelection {
-			display: flex;
-			flex-direction: column; /* Stack buttons vertically */
-			align-items: center; /* Center the buttons */
-			gap: 1px; /* Add space between buttons */
-		}
-        /* Hide the default checkbox */
-        .item-checkbox input[type="checkbox"] {
-            display: none;
-        }
+    }
+</style>
 
-        /* Custom checkbox icon */
-        .custom-checkbox {
-            width: 25px;
-            height: 25px;
-            background-color: white;
-            border: 2px solid #c4a484;
-            border-radius: 4px;
-            margin-right: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        /* Checkmark style when checked */
-        .item-checkbox input[type="checkbox"]:checked + .custom-checkbox {
-            background-color: #d8ac5c;
-            color: white;
-        }
-
-        /* Adding checkmark content */
-        .custom-checkbox::before {
-            content: '✔';  /* Unicode for checkmark */
-            font-size: 1.2em;
-            display: none;
-        }
-
-        /* Display checkmark when checked */
-        .item-checkbox input[type="checkbox"]:checked + .custom-checkbox::before {
-            display: block;
-        }
-    </style>
 </head>
 <body>
     <a href="index.html" class="back-arrow">←</a>
@@ -231,118 +205,114 @@
 </div>
 
 
-    <input type="number" id="itemQuantity" placeholder="Zadaj množstvo (1 ak nezadané)" min="1" />
+    <input type="number" id="itemQuantity" placeholder="Zadaj množstvo (optional)" min="1" />
 	
     <!-- Item List and Send Button (hidden initially) -->
     <div id="itemList" class="item-list"></div>
     <button id="sendButton" style="display: none;">Odoslať FlyBoyovi</button>
 
     <script>
-        let itemCounts = {};
+		let itemCounts = {};
 
-        document.querySelectorAll('.add-item-button').forEach(button => {
-            button.onclick = function() {
-                const quantityInput = document.getElementById('itemQuantity');
-                const quantity = parseInt(quantityInput.value, 10) || 1;  // Default to 1 if empty
+		document.querySelectorAll('.add-item-button').forEach(button => {
+			button.onclick = function() {
+				const quantityInput = document.getElementById('itemQuantity');
+				const quantity = parseInt(quantityInput.value, 10) || 1;  // Default to 1 if empty
 
-                const itemName = button.dataset.item;
-                if (itemCounts[itemName]) {
-                    itemCounts[itemName] += quantity;
-                } else {
-                    itemCounts[itemName] = quantity;
-                }
+				const itemName = button.dataset.item;
+				if (itemCounts[itemName]) {
+					itemCounts[itemName] += quantity;
+				} else {
+					itemCounts[itemName] = quantity;
+				}
 
-                updateItemList();
-                quantityInput.value = "";  // Clear the input
+				updateItemList();
+				quantityInput.value = "";  // Clear the input
 
-                // Show item list and send button after first item is added
-                document.getElementById('itemList').style.display = 'block';
-                document.getElementById('sendButton').style.display = 'block';
-            };
-        });
+				// Show item list and send button after first item is added
+				document.getElementById('itemList').style.display = 'block';
+				document.getElementById('sendButton').style.display = 'block';
+			};
+		});
 
-        function updateItemList() {
-            const itemList = document.getElementById('itemList');
-            itemList.innerHTML = "";
-            for (const item in itemCounts) {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'item';
-                itemDiv.innerHTML = `${item} (x${itemCounts[item]})`;
+		function updateItemList() {
+			const itemList = document.getElementById('itemList');
+			itemList.innerHTML = "";
+			for (const item in itemCounts) {
+				const itemDiv = document.createElement('div');
+				itemDiv.className = 'item';
+				itemDiv.innerHTML = `${item} (x${itemCounts[item]})`;
 
-                const removeButton = document.createElement('button');
-                removeButton.className = 'remove-button';
-                removeButton.innerHTML = 'X';
-                removeButton.onclick = function() {
-                    delete itemCounts[item];
-                    updateItemList();
-                };
+				const removeButton = document.createElement('button');
+				removeButton.className = 'remove-button';
+				removeButton.innerHTML = 'X';
+				removeButton.onclick = function() {
+					delete itemCounts[item];
+					updateItemList();
+				};
 
-                itemDiv.appendChild(removeButton);
-                itemList.appendChild(itemDiv);
-            }
-        }
+				itemDiv.appendChild(removeButton);
+				itemList.appendChild(itemDiv);
+			}
+		}
 
-        document.getElementById('sendButton').onclick = function() {
-            const selectedStand = document.getElementById('standDropdown').value;
+		document.getElementById('sendButton').onclick = function() {
+			const selectedStand = document.getElementById('standDropdown').value;
 
-            if (!selectedStand) {
-                alert("Prosím vyberte KT.");
-                return;
-            }
+			if (!selectedStand) {
+				alert("Prosím vyberte KT.");
+				return;
+			}
 
-            const items = Object.entries(itemCounts).map(([item, count]) => `${item} (x${count})`).join('\n');
+			const items = Object.entries(itemCounts).map(([item, count]) => `${item} (x${count})`).join('\n');
 
-            const webhookUrl = "https://discord.com/api/webhooks/1303752787737444423/0TSLzUYZlepHdg1oMl8h1_DJdFz3NqMcSq4uWfugkZgS3FJ0DZ46k6r4Kg-KZQ1qUhVr";
+			const webhookUrl = "https://discord.com/api/webhooks/1303752787737444423/0TSLzUYZlepHdg1oMl8h1_DJdFz3NqMcSq4uWfugkZgS3FJ0DZ46k6r4Kg-KZQ1qUhVr";
 
-            const payload = {
-                content: `${selectedStand}`,
-                embeds: [
-                    {
-                        title: items,
-                        color: 14199900
-                    }
-                ],
-                attachments: []
-            };
+			const payload = {
+				content: `**${selectedStand}**\n> ${items}`,  // Correct format for content
+				embeds: null,  // No embeds
+				attachments: []
+			};
 
-            fetch(webhookUrl, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(payload)
-            })
-            .then(response => {
-                if (response.ok) {
-                    document.getElementById('sendButton').innerHTML = 'Zaslané';
-                    document.getElementById('sendButton').disabled = true;
+			fetch(webhookUrl, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(payload)
+			})
+			.then(response => {
+				if (response.ok) {
+					document.getElementById('sendButton').innerHTML = 'Zaslané';
+					document.getElementById('sendButton').disabled = true;
 
-                    itemCounts = {};
-                    updateItemList();
+					itemCounts = {};
+					updateItemList();
 
-                    document.getElementById('standDropdown').value = '';
-                    document.getElementById('itemQuantity').value = '';
-                } else {
-                    alert("Chyba pri odosielaní.");
-                }
-            })
-            .catch(error => {
-                alert("Chyba pripojenia: " + error.message);
-            });
-        };
+					document.getElementById('standDropdown').value = '';
+					document.getElementById('itemQuantity').value = '';
+				} else {
+					alert("Chyba pri odosielaní.");
+				}
+			})
+			.catch(error => {
+				alert("Chyba pripojenia: " + error.message);
+			});
+		};
 
-        function enableSendButton() {
-            document.getElementById('sendButton').disabled = false;
-            document.getElementById('sendButton').innerHTML = 'Zaslať';
-        }
+		function enableSendButton() {
+			document.getElementById('sendButton').disabled = false;
+			document.getElementById('sendButton').innerHTML = 'Zaslať';
+		}
 
-        document.querySelectorAll('.add-item-button').forEach(button => {
-            button.addEventListener('click', function() {
-                if (document.getElementById('sendButton').disabled) {
-                    enableSendButton();
-                }
-            });
-        });
-    </script>
+		document.querySelectorAll('.add-item-button').forEach(button => {
+			button.addEventListener('click', function() {
+				if (document.getElementById('sendButton').disabled) {
+					enableSendButton();
+				}
+			});
+		});
+	</script>
+
 </body>
 </html>
