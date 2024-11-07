@@ -67,7 +67,12 @@
         color: white;
         font-size: 1.5em;
     }
-
+	.divider {
+		width: 105%;
+		max-width: 800px;
+		border-top: 2px solid #c4a484;
+		margin: 25px 0;
+	}
     .add-item-box {
         flex-grow: 1;
         text-align: left;
@@ -205,47 +210,56 @@
     <!-- Item List and Send Button (hidden initially) -->
     <div id="itemList" class="item-list"></div>
     <button id="sendButton" style="display: none;">Odoslať FlyBoyovi</button>
+    <script>
+        const items = [
+            "Voda", "Odpad", "Hadry", "Ručníky", "Dóza kávy", 
+            "divider", "Kartón mlieka", "Oves", "Sója", 
+            "divider", "S kelímky", "M kelímky", "L kelímky", "XL kelímky",
+            "divider", "Viečka S", "Viečka M", "Viečka L",
+            "divider", "Držiak na 4 kelímky", "Perníčkoví panáčikovia", 
+            "Papierová role",
+            "divider", "Chai korenie", "Drtený perníček", 
+            "Mliečna čokoláda", "Biela čokoláda", "Sirup", "Bezkofeín",
+            "divider", "Váha", "Stopky", "Kilovka kávy", "200g Kávy", 
+            "Biely cukor", "Hnedý cukor"
+        ];
 
-<script>
-    const items = [
-        "Voda", "Odpad", "Hadry", "Ručníky", "Dóza kávy", "Kartón mlieka", "Oves", 
-        "Sója", "S kelímky", "M kelímky", "L kelímky", "XL kelímky", "Viečka S", 
-        "Viečka M", "Viečka L", "Držiak na 4 kelímky", "Perníčkoví panáčikovia", 
-        "Papierová role", "Chai korenie", "Drtený perníček", "Mliečna čokoláda", 
-        "Biela čokoláda", "Sirup", "Bezkofeín", "Váha", "Stopky", "Kilovka kávy", 
-        "200g Kávy", "Biely cukor", "Hnedý cukor"
-    ];
+        const container = document.getElementById("itemSelection");
 
-    const container = document.getElementById("itemSelection");
+        items.forEach(item => {
+            if (item === "divider") {
+                const divider = document.createElement("hr");
+                divider.className = "divider";
+                container.appendChild(divider);
+            } else {
+                const itemContainer = document.createElement("div");
+                itemContainer.className = "item-container";
+                
+                const itemBox = document.createElement("div");
+                itemBox.className = "add-item-box";
+                itemBox.textContent = item;
+                
+                const quantityControl = document.createElement("div");
+                quantityControl.className = "quantity-control";
 
-    items.forEach(item => {
-        const itemContainer = document.createElement("div");
-        itemContainer.className = "item-container";
-        
-        const itemBox = document.createElement("div");
-        itemBox.className = "add-item-box";
-        itemBox.textContent = item;
-        
-        const quantityControl = document.createElement("div");
-        quantityControl.className = "quantity-control";
+                const minusButton = document.createElement("span");
+                minusButton.className = "control-button minus";
+                minusButton.textContent = "−";
+                
+                const quantityDisplay = document.createElement("span");
+                quantityDisplay.className = "quantity-display";
+                quantityDisplay.textContent = "0";
+                
+                const plusButton = document.createElement("span");
+                plusButton.className = "control-button plus";
+                plusButton.textContent = "+";
 
-        const minusButton = document.createElement("span");
-        minusButton.className = "control-button minus";
-        minusButton.textContent = "−";
-        
-        const quantityDisplay = document.createElement("span");
-        quantityDisplay.className = "quantity-display";
-        quantityDisplay.textContent = "0";
-        
-        const plusButton = document.createElement("span");
-        plusButton.className = "control-button plus";
-        plusButton.textContent = "+";
-
-        quantityControl.append(minusButton, quantityDisplay, plusButton);
-        itemContainer.append(itemBox, quantityControl);
-        container.append(itemContainer);
-    });
-</script>
+                quantityControl.append(minusButton, quantityDisplay, plusButton);
+                itemContainer.append(itemBox, quantityControl);
+                container.append(itemContainer);
+            }
+        });
+    </script>
 	<script>
 		let itemCounts = {};
 
