@@ -18,10 +18,6 @@
         padding-bottom: 40px;
     }
 
-    select:focus {
-        outline: none;
-    }
-
     .back-arrow {
         position: absolute;
         top: 20px;
@@ -53,66 +49,89 @@
         margin-bottom: 20px;
         border-radius: 5px;
         border: 2px solid #c4a484;
-        font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     input::placeholder {
         font-size: 1.2em;
     }
 
-    button {
-        width: 100%;
-        max-width: 600px;
-        padding: 10px;
-        font-size: 1.5em;
-        margin-bottom: 15px; 
-        border-radius: 4px;
-        background-color: #d8ac5c;
-        color: white;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
-        font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    button:hover {
-        background-color: #b99a4b;
-    }
-
-    .item-list {
-        width: 100%;
-        max-width: 600px;
-        background-color: #ffffff;
-        border: 2px solid #c4a484;
-        border-radius: 3px;
-        padding: 10px;
-        max-height: 200px;
-        overflow-y: auto;
-        margin-bottom: 20px;
-        display: none;
-        min-height: 200px;
-        font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    .item-list::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    .item-list::-webkit-scrollbar-thumb {
-        background-color: #c4a484;
-        border-radius: 4px;
-    }
-
-    .item {
+    .item-container {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        padding: 5px;
-        border-bottom: 1px solid #ddd;
-        font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
+        width: 100%;
+        max-width: 700px;
+        margin-bottom: 15px;
+        background-color: #d8ac5c;
+        padding: 10px;
+        border-radius: 4px;
+        color: white;
+        font-size: 1.5em;
     }
 
-    .remove-button {
+    .add-item-box {
+        flex-grow: 1;
+        text-align: left;
+        padding: 0 10px;
+    }
+
+    .quantity-control {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+    }
+	button {
+		width: 100%;
+		max-width: 600px;
+		padding: 15px;
+		font-size: 1.5em;
+		margin-bottom: 20px;
+		border-radius: 5px;
+		background-color: #d8ac5c;
+		color: white;
+		border: none;
+		cursor: pointer;
+		transition: background-color 0.2s ease;
+		font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
+	}
+	button:hover {
+		background-color: #b99a4b;
+	}
+	.item-list {
+		width: 100%;
+		max-width: 600px;
+		background-color: #ffffff;
+		border: 2px solid #c4a484;
+		border-radius: 3px;
+		padding: 10px;
+		max-height: 200px;
+		overflow-y: auto;
+		margin-bottom: 20px;
+		display: none;
+		min-height: 200px; 
+		font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
+	}
+    .control-button {
+        color: white;
+        font-size: 1.5em;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        width: 20px;
+        text-align: center;
+        display: flex;
+    }
+
+    .control-button:hover {
+        color: #c4a484;
+    }
+
+    .quantity-display {
+        font-size: 1.5em;
+        width: 40px;
+        text-align: center;
+        margin: 0 10px;
+    }
+	.remove-button {
         background-color: transparent;
         color: #d8ac5c;
         border: none;
@@ -126,30 +145,17 @@
         font-size: 1.5em;
         font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
     }
-
     .remove-button:hover {
         background-color: #d8ac5c;
         color: white;
-    }
-
-    #itemSelection {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1px;
     }
 
     @media (max-width: 768px) {
         body {
             padding: 10px;
         }
-
-        .item-list {
-            min-height: 150px;
-        }
     }
 </style>
-
 </head>
 <body>
     <a href="index.html" class="back-arrow">←</a>
@@ -170,93 +176,132 @@
 		<option value="KT Detská Nemocnica">KT Detská Nemocnica</option>
 	</select>
 
-    <!-- Item Selection with Add Buttons -->
+
+    <!-- Item Boxes with Quantity Controls -->
+    <!--
 	<div id="itemSelection">
-		<button class="add-item-button" data-item="Voda">Voda</button>
-		<button class="add-item-button" data-item="Odpad">Odpad</button>
-		<button class="add-item-button" data-item="Hadry">Hadry</button>
-		<button class="add-item-button" data-item="Ručníky">Ručníky</button>
-		<button class="add-item-button" data-item="Dóza kávy">Dóza kávy</button>
-		<button class="add-item-button" data-item="Kartón mlieka">Kartón mlieka</button>
-		<button class="add-item-button" data-item="Oves">Oves</button>
-		<button class="add-item-button" data-item="Sója">Sója</button>
-		<button class="add-item-button" data-item="S kelímky">S kelímky</button>
-		<button class="add-item-button" data-item="M kelímky">M kelímky</button>
-		<button class="add-item-button" data-item="L kelímky">L kelímky</button>
-		<button class="add-item-button" data-item="XL kelímky">XL kelímky</button>
-		<button class="add-item-button" data-item="Viečka S">Viečka S</button>
-		<button class="add-item-button" data-item="Viečka M">Viečka M</button>
-		<button class="add-item-button" data-item="Viečka L">Viečka L</button>
-		<button class="add-item-button" data-item="Držiak na 4 kelímky">Držiak na 4 kelímky</button>
-		<button class="add-item-button" data-item="Perníčkoví panáčikovia">Perníčkoví panáčikovia</button>
-		<button class="add-item-button" data-item="Papierová role">Papierová role</button>
-		<button class="add-item-button" data-item="Chai korenie">Chai korenie</button>
-		<button class="add-item-button" data-item="Drtený perníček">Drtený perníček</button>
-		<button class="add-item-button" data-item="Mliečna čokoláda">Mliečna čokoláda</button>
-		<button class="add-item-button" data-item="Biela čokoláda">Biela čokoláda</button>
-		<button class="add-item-button" data-item="Sirup">Sirup</button>
-		<button class="add-item-button" data-item="Bezkofeín">Bezkofeín</button>
-		<button class="add-item-button" data-item="Váha">Váha</button>
-		<button class="add-item-button" data-item="Stopky">Stopky</button>
-		<button class="add-item-button" data-item="Kilovka kávy">Kilovka kávy</button>
-		<button class="add-item-button" data-item="200g Kávy">200g Kávy</button>
-		<button class="add-item-button" data-item="Biely cukor">Biely cukor</button>
-		<button class="add-item-button" data-item="Hnedý cukor">Hnedý cukor</button>
-	</div>
-
-
-
-    <input type="number" id="itemQuantity" placeholder="Zadaj množstvo (optional)" min="1" />
+        <div class="item-container">
+            <div class="add-item-box">Voda</div>
+            <div class="quantity-control">
+                <span class="control-button minus">−</span>
+                <span class="quantity-display">0</span>
+                <span class="control-button plus">+</span>
+            </div>
+        </div>
+        <div class="item-container">
+            <div class="add-item-box">Odpad</div>
+            <div class="quantity-control">
+                <span class="control-button minus">−</span>
+                <span class="quantity-display">0</span>
+                <span class="control-button plus">+</span>
+            </div>
+        </div>
+    </div>
+-->
+	<div id="itemSelection"></div>
+	
+    <!-- <input type="number" id="itemQuantity" placeholder="Zadaj množstvo (optional)" min="1" /> -->
 	
     <!-- Item List and Send Button (hidden initially) -->
     <div id="itemList" class="item-list"></div>
     <button id="sendButton" style="display: none;">Odoslať FlyBoyovi</button>
 
-    <script>
+<script>
+    const items = [
+        "Voda", "Odpad", "Hadry", "Ručníky", "Dóza kávy", "Kartón mlieka", "Oves", 
+        "Sója", "S kelímky", "M kelímky", "L kelímky", "XL kelímky", "Viečka S", 
+        "Viečka M", "Viečka L", "Držiak na 4 kelímky", "Perníčkoví panáčikovia", 
+        "Papierová role", "Chai korenie", "Drtený perníček", "Mliečna čokoláda", 
+        "Biela čokoláda", "Sirup", "Bezkofeín", "Váha", "Stopky", "Kilovka kávy", 
+        "200g Kávy", "Biely cukor", "Hnedý cukor"
+    ];
+
+    const container = document.getElementById("itemSelection");
+
+    items.forEach(item => {
+        const itemContainer = document.createElement("div");
+        itemContainer.className = "item-container";
+        
+        const itemBox = document.createElement("div");
+        itemBox.className = "add-item-box";
+        itemBox.textContent = item;
+        
+        const quantityControl = document.createElement("div");
+        quantityControl.className = "quantity-control";
+
+        const minusButton = document.createElement("span");
+        minusButton.className = "control-button minus";
+        minusButton.textContent = "−";
+        
+        const quantityDisplay = document.createElement("span");
+        quantityDisplay.className = "quantity-display";
+        quantityDisplay.textContent = "0";
+        
+        const plusButton = document.createElement("span");
+        plusButton.className = "control-button plus";
+        plusButton.textContent = "+";
+
+        quantityControl.append(minusButton, quantityDisplay, plusButton);
+        itemContainer.append(itemBox, quantityControl);
+        container.append(itemContainer);
+    });
+</script>
+	<script>
 		let itemCounts = {};
 
-		document.querySelectorAll('.add-item-button').forEach(button => {
-			button.onclick = function() {
-				const quantityInput = document.getElementById('itemQuantity');
-				const quantity = parseInt(quantityInput.value, 10) || 1;  // Default to 1 if empty
+// Function to update the item list display
+function updateItemList() {
+    const itemList = document.getElementById('itemList');
+    itemList.innerHTML = "";
+    let hasItems = false;
 
-				const itemName = button.dataset.item;
-				if (itemCounts[itemName]) {
-					itemCounts[itemName] += quantity;
-				} else {
-					itemCounts[itemName] = quantity;
-				}
+    for (const item in itemCounts) {
+        if (itemCounts[item] > 0) {
+            hasItems = true;
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'item';
+            itemDiv.textContent = `${item} (x${itemCounts[item]})`;
+            itemList.appendChild(itemDiv);
+        }
+    }
+    
+    itemList.style.display = hasItems ? 'block' : 'none';
+    document.getElementById('sendButton').style.display = hasItems ? 'block' : 'none';
+}
 
-				updateItemList();
-				quantityInput.value = "";  // Clear the input
+// Function to update quantity display
+function updateQuantityDisplay(element, quantity) {
+    element.textContent = quantity;
+    updateItemList();  // Update list dynamically after each quantity change
+}
 
-				// Show item list and send button after first item is added
-				document.getElementById('itemList').style.display = 'block';
-				document.getElementById('sendButton').style.display = 'block';
-			};
-		});
+// Add click event to each quantity control
+document.querySelectorAll('.item-container').forEach(container => {
+    const itemName = container.querySelector('.add-item-box').textContent.trim();
+    itemCounts[itemName] = 0;  // Initialize item quantity
 
-		function updateItemList() {
-			const itemList = document.getElementById('itemList');
-			itemList.innerHTML = "";
-			for (const item in itemCounts) {
-				const itemDiv = document.createElement('div');
-				itemDiv.className = 'item';
-				itemDiv.innerHTML = `${item} (x${itemCounts[item]})`;
+    // Select plus and minus buttons, and quantity display
+    const minusButton = container.querySelector('.control-button.minus');
+    const plusButton = container.querySelector('.control-button.plus');
+    const quantityDisplay = container.querySelector('.quantity-display');
 
-				const removeButton = document.createElement('button');
-				removeButton.className = 'remove-button';
-				removeButton.innerHTML = 'X';
-				removeButton.onclick = function() {
-					delete itemCounts[item];
-					updateItemList();
-				};
+    // Event listeners for plus and minus buttons
+    minusButton.addEventListener('click', () => {
+        if (itemCounts[itemName] > 0) {
+            itemCounts[itemName]--;
+            updateQuantityDisplay(quantityDisplay, itemCounts[itemName]);
+        }
+    });
 
-				itemDiv.appendChild(removeButton);
-				itemList.appendChild(itemDiv);
-			}
-		}
+    plusButton.addEventListener('click', () => {
+        itemCounts[itemName]++;
+        updateQuantityDisplay(quantityDisplay, itemCounts[itemName]);
+    });
+});
 
+
+
+		// Send button functionality
 		document.getElementById('sendButton').onclick = function() {
 			const selectedStand = document.getElementById('standDropdown').value;
 
@@ -265,13 +310,22 @@
 				return;
 			}
 
-			const items = Object.entries(itemCounts).map(([item, count]) => `${item} (x${count})`).join('\n');
+			// Only include items with a count of 1 or more
+			const items = Object.entries(itemCounts)
+				.filter(([_, count]) => count > 0)
+				.map(([item, count]) => `> ${item} (x${count})`)
+				.join('\n');
+
+			if (items.length === 0) {
+				alert("Žiadne položky k odoslaniu.");
+				return;
+			}
 
 			const webhookUrl = "https://discord.com/api/webhooks/1303752787737444423/0TSLzUYZlepHdg1oMl8h1_DJdFz3NqMcSq4uWfugkZgS3FJ0DZ46k6r4Kg-KZQ1qUhVr";
 
 			const payload = {
-				content: `**${selectedStand}**\n> ${items}`,  // Correct format for content
-				embeds: null,  // No embeds
+				content: `**${selectedStand}**\n${items}`,
+				embeds: null,
 				attachments: []
 			};
 
@@ -287,11 +341,17 @@
 					document.getElementById('sendButton').innerHTML = 'Zaslané';
 					document.getElementById('sendButton').disabled = true;
 
-					itemCounts = {};
+					// Reset counts without reinitializing itemCounts
+					for (let item in itemCounts) {
+						itemCounts[item] = 0;
+					}
+					
+					// Update display to reflect reset counts
 					updateItemList();
-
+					document.querySelectorAll('.quantity-display').forEach(q => q.textContent = '0');
+					
+					// Reset the stand dropdown selection
 					document.getElementById('standDropdown').value = '';
-					document.getElementById('itemQuantity').value = '';
 				} else {
 					alert("Chyba pri odosielaní.");
 				}
@@ -299,21 +359,10 @@
 			.catch(error => {
 				alert("Chyba pripojenia: " + error.message);
 			});
+
 		};
-
-		function enableSendButton() {
-			document.getElementById('sendButton').disabled = false;
-			document.getElementById('sendButton').innerHTML = 'Zaslať';
-		}
-
-		document.querySelectorAll('.add-item-button').forEach(button => {
-			button.addEventListener('click', function() {
-				if (document.getElementById('sendButton').disabled) {
-					enableSendButton();
-				}
-			});
-		});
 	</script>
+
 
 </body>
 </html>
