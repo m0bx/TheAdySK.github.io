@@ -53,7 +53,7 @@
         button {
             width: 100%;
             max-width: 600px;
-            padding: 15px;
+            padding: 10px;
             font-size: 1.5em;
             margin-bottom: 20px;
             border-radius: 5px;
@@ -81,7 +81,6 @@
             min-height: 200px; 
 			font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
         }
-		@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
         input {
             width: 100%;
             max-width: 600px; 
@@ -127,6 +126,55 @@
                 min-height: 150px;
             }
         }
+		        .item-checkbox {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+		#itemSelection {
+			display: flex;
+			flex-direction: column; /* Stack buttons vertically */
+			align-items: center; /* Center the buttons */
+			gap: 1px; /* Add space between buttons */
+		}
+        /* Hide the default checkbox */
+        .item-checkbox input[type="checkbox"] {
+            display: none;
+        }
+
+        /* Custom checkbox icon */
+        .custom-checkbox {
+            width: 25px;
+            height: 25px;
+            background-color: white;
+            border: 2px solid #c4a484;
+            border-radius: 4px;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Checkmark style when checked */
+        .item-checkbox input[type="checkbox"]:checked + .custom-checkbox {
+            background-color: #d8ac5c;
+            color: white;
+        }
+
+        /* Adding checkmark content */
+        .custom-checkbox::before {
+            content: '✔';  /* Unicode for checkmark */
+            font-size: 1.2em;
+            display: none;
+        }
+
+        /* Display checkmark when checked */
+        .item-checkbox input[type="checkbox"]:checked + .custom-checkbox::before {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -148,153 +196,153 @@
 		<option value="KT Detská Nemocnica">KT Detská Nemocnica</option>
 	</select>
 
+    <!-- Item Selection with Add Buttons -->
+    <div id="itemSelection">
+    <button class="add-item-button" data-item="Voda">Pridať Voda</button>
+    <button class="add-item-button" data-item="Odpad">Pridať Odpad</button>
+    <button class="add-item-button" data-item="Hadry">Pridať Hadry</button>
+    <button class="add-item-button" data-item="Ručníky">Pridať Ručníky</button>
+    <button class="add-item-button" data-item="Dóza kávy">Pridať Dóza kávy</button>
+    <button class="add-item-button" data-item="Kartón mlieka">Pridať Kartón mlieka</button>
+    <button class="add-item-button" data-item="Oves">Pridať Oves</button>
+    <button class="add-item-button" data-item="Sója">Pridať Sója</button>
+    <button class="add-item-button" data-item="S kelímky">Pridať S kelímky</button>
+    <button class="add-item-button" data-item="M kelímky">Pridať M kelímky</button>
+    <button class="add-item-button" data-item="L kelímky">Pridať L kelímky</button>
+    <button class="add-item-button" data-item="XL kelímky">Pridať XL kelímky</button>
+    <button class="add-item-button" data-item="Viečka S">Pridať Viečka S</button>
+    <button class="add-item-button" data-item="Viečka M">Pridať Viečka M</button>
+    <button class="add-item-button" data-item="Viečka L">Pridať Viečka L</button>
+    <button class="add-item-button" data-item="Držiak na 4 kelímky">Pridať Držiak na 4 kelímky</button>
+    <button class="add-item-button" data-item="Perníčkoví panáčikovia">Pridať Perníčkoví panáčikovia</button>
+    <button class="add-item-button" data-item="Papierová role">Pridať Papierová role</button>
+    <button class="add-item-button" data-item="Chai korenie">Pridať Chai korenie</button>
+    <button class="add-item-button" data-item="Drtený perníček">Pridať Drtený perníček</button>
+    <button class="add-item-button" data-item="Mliečna čokoláda">Pridať Mliečna čokoláda</button>
+    <button class="add-item-button" data-item="Biela čokoláda">Pridať Biela čokoláda</button>
+    <button class="add-item-button" data-item="Sirup">Pridať Sirup</button>
+    <button class="add-item-button" data-item="Bezkofeín">Pridať Bezkofeín</button>
+    <button class="add-item-button" data-item="Váha">Pridať Váha</button>
+    <button class="add-item-button" data-item="Stopky">Pridať Stopky</button>
+    <button class="add-item-button" data-item="Kilovka kávy">Pridať Kilovka kávy</button>
+    <button class="add-item-button" data-item="200g Kávy">Pridať 200g Kávy</button>
+    <button class="add-item-button" data-item="Biely cukor">Pridať Biely cukor</button>
+    <button class="add-item-button" data-item="Hnedý cukor">Pridať Hnedý cukor</button>
+</div>
 
-    <!-- Dropdown and Input for Item Selection -->
-	<select id="itemDropdown">
-		<option value="item1">Voda</option>
-		<option value="item2">Odpad</option>
-		<option value="item3">Hadry</option>
-		<option value="item4">Ručníky</option>
-		<option value="item5">Dóza kávy</option>
-		<option value="item6">Kartón mlieka</option>
-		<option value="item7">Oves</option>
-		<option value="item8">Sója</option>
-		<option value="item9">S kelímky</option>
-		<option value="item10">M kelímky</option>
-		<option value="item11">L kelímky</option>
-		<option value="item12">XL kelímky</option>
-		<option value="item13">Viečka S</option>
-		<option value="item14">Viečka M</option>
-		<option value="item15">Viečka L</option>
-		<option value="item16">Držiak na 4 kelímky</option>
-		<option value="item17">Perníčkoví panáčikovia</option>
-		<option value="item18">Papierová role</option>
-		<option value="item19">Chai korenie</option>
-		<option value="item20">Drtený perníček</option>
-		<option value="item21">Mliečna čokoláda</option>
-		<option value="item22">Biela čokoláda</option>
-		<option value="item23">Sirup</option>
-		<option value="item24">Bezkofeín</option>
-		<option value="item25">Váha</option>
-		<option value="item26">Stopky</option>
-		<option value="item27">Kilovka kávy</option>
-		<option value="item28">200g Kávy</option>
-		<option value="item29">Biely cukor</option>
-		<option value="item30">Hnedý cukor</option>
-	</select>
 
-    <input type="number" id="itemQuantity" placeholder="Zadajte množstvo" min="1" />
-    <button id="addButton">Pridaj</button>
-    
+    <input type="number" id="itemQuantity" placeholder="Zadaj množstvo (1 ak nezadané)" min="1" />
+	
     <!-- Item List and Send Button (hidden initially) -->
     <div id="itemList" class="item-list"></div>
-    <button id="sendButton" style="display: none;">Odoslať</button>
-	<script>
-    let itemCounts = {};
+    <button id="sendButton" style="display: none;">Odoslať FlyBoyovi</button>
 
-    document.getElementById('addButton').onclick = function() {
-        const dropdown = document.getElementById('itemDropdown');
-        const quantity = parseInt(document.getElementById('itemQuantity').value, 10);
-        const itemName = dropdown.options[dropdown.selectedIndex].text;
+    <script>
+        let itemCounts = {};
 
-        if (dropdown.value && quantity) {
-            if (itemCounts[itemName]) {
-                itemCounts[itemName] += quantity;
-            } else {
-                itemCounts[itemName] = quantity;
-            }
-            updateItemList();
-            document.getElementById('itemQuantity').value = "";
+        document.querySelectorAll('.add-item-button').forEach(button => {
+            button.onclick = function() {
+                const quantityInput = document.getElementById('itemQuantity');
+                const quantity = parseInt(quantityInput.value, 10) || 1;  // Default to 1 if empty
 
-            // Show item list and send button after first item is added
-            document.getElementById('itemList').style.display = 'block';
-            document.getElementById('sendButton').style.display = 'block';
-        } else {
-            alert("Prosím vyberte položku a zadajte množstvo.");
-        }
-    };
+                const itemName = button.dataset.item;
+                if (itemCounts[itemName]) {
+                    itemCounts[itemName] += quantity;
+                } else {
+                    itemCounts[itemName] = quantity;
+                }
 
-    function updateItemList() {
-        const itemList = document.getElementById('itemList');
-        itemList.innerHTML = "";
-        for (const item in itemCounts) {
-            const itemDiv = document.createElement('div');
-            itemDiv.className = 'item';
-            itemDiv.innerHTML = `${item} (x${itemCounts[item]})`;
-
-            const removeButton = document.createElement('button');
-            removeButton.className = 'remove-button';
-            removeButton.innerHTML = 'X';
-            removeButton.onclick = function() {
-                delete itemCounts[item];
                 updateItemList();
+                quantityInput.value = "";  // Clear the input
+
+                // Show item list and send button after first item is added
+                document.getElementById('itemList').style.display = 'block';
+                document.getElementById('sendButton').style.display = 'block';
+            };
+        });
+
+        function updateItemList() {
+            const itemList = document.getElementById('itemList');
+            itemList.innerHTML = "";
+            for (const item in itemCounts) {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'item';
+                itemDiv.innerHTML = `${item} (x${itemCounts[item]})`;
+
+                const removeButton = document.createElement('button');
+                removeButton.className = 'remove-button';
+                removeButton.innerHTML = 'X';
+                removeButton.onclick = function() {
+                    delete itemCounts[item];
+                    updateItemList();
+                };
+
+                itemDiv.appendChild(removeButton);
+                itemList.appendChild(itemDiv);
+            }
+        }
+
+        document.getElementById('sendButton').onclick = function() {
+            const selectedStand = document.getElementById('standDropdown').value;
+
+            if (!selectedStand) {
+                alert("Prosím vyberte KT.");
+                return;
+            }
+
+            const items = Object.entries(itemCounts).map(([item, count]) => `${item} (x${count})`).join('\n');
+
+            const webhookUrl = "https://discord.com/api/webhooks/1303752787737444423/0TSLzUYZlepHdg1oMl8h1_DJdFz3NqMcSq4uWfugkZgS3FJ0DZ46k6r4Kg-KZQ1qUhVr";
+
+            const payload = {
+                content: `${selectedStand}`,
+                embeds: [
+                    {
+                        title: items,
+                        color: 14199900
+                    }
+                ],
+                attachments: []
             };
 
-            itemDiv.appendChild(removeButton);
-            itemList.appendChild(itemDiv);
+            fetch(webhookUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('sendButton').innerHTML = 'Zaslané';
+                    document.getElementById('sendButton').disabled = true;
+
+                    itemCounts = {};
+                    updateItemList();
+
+                    document.getElementById('standDropdown').value = '';
+                    document.getElementById('itemQuantity').value = '';
+                } else {
+                    alert("Chyba pri odosielaní.");
+                }
+            })
+            .catch(error => {
+                alert("Chyba pripojenia: " + error.message);
+            });
+        };
+
+        function enableSendButton() {
+            document.getElementById('sendButton').disabled = false;
+            document.getElementById('sendButton').innerHTML = 'Zaslať';
         }
-    }
 
-    document.getElementById('sendButton').onclick = function() {
-		const selectedStand = document.getElementById('standDropdown').value;
-
-		if (!selectedStand) {
-			alert("Prosím vyberte KT.");
-			return;
-		}
-
-		const items = Object.entries(itemCounts).map(([item, count]) => `${item} (x${count})`).join('\n');
-
-		const webhookUrl = "https://discord.com/api/webhooks/1303752787737444423/0TSLzUYZlepHdg1oMl8h1_DJdFz3NqMcSq4uWfugkZgS3FJ0DZ46k6r4Kg-KZQ1qUhVr";
-
-		const payload = {
-			content: `${selectedStand}`,
-			embeds: [
-				{
-					title: items,
-					color: 14199900
-				}
-			],
-			attachments: []
-		};
-
-		fetch(webhookUrl, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify(payload)
-		})
-		.then(response => {
-			if (response.ok) {
-				document.getElementById('sendButton').innerHTML = 'Zaslané';
-				document.getElementById('sendButton').disabled = true;
-
-				itemCounts = {};
-				updateItemList();
-
-				document.getElementById('standDropdown').value = '';
-				document.getElementById('itemDropdown').value = '';
-				document.getElementById('itemQuantity').value = '';
-			} else {
-				alert("Chyba pri odosielaní.");
-			}
-		})
-		.catch(error => {
-			alert("Chyba pripojenia: " + error.message);
-		});
-	};
-    function enableSendButton() {
-        document.getElementById('sendButton').disabled = false;
-        document.getElementById('sendButton').innerHTML = 'Zaslať';
-    }
-    document.getElementById('addButton').addEventListener('click', function() {
-        if (document.getElementById('sendButton').disabled) {
-            enableSendButton();
-        }
-    });
-</script>
-
-
+        document.querySelectorAll('.add-item-button').forEach(button => {
+            button.addEventListener('click', function() {
+                if (document.getElementById('sendButton').disabled) {
+                    enableSendButton();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
